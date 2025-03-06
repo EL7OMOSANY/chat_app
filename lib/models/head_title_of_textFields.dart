@@ -1,0 +1,19 @@
+import 'package:flutter/material.dart';
+
+class HeadTitleOfTextfields extends StatelessWidget {
+  const HeadTitleOfTextfields({super.key, required this.title});
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return  Text(
+                title,
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.teal[700],
+                  fontFamily: "Pacifico",
+                ),
+              );
+  }
+}
