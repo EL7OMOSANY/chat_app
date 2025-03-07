@@ -1,22 +1,35 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class CustomTextfield extends StatelessWidget {
-   CustomTextfield({this.onChanged,super.key, required this.hintText, required this.icon, required this.keyboardType});
+  CustomTextfield({
+    this.onChanged,
+    super.key,
+    required this.hintText,
+    required this.icon,
+    required this.keyboardType,
+  });
   final String hintText;
   final IconData icon;
   final TextInputType keyboardType;
   Function(String)? onChanged;
-  
+
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'Field is required';
+        }
+        return null;
+      },
       onChanged: onChanged,
       keyboardType: keyboardType,
       decoration: InputDecoration(
         prefixIcon: Icon(icon, color: Colors.grey),
 
-        hintText:hintText,
+        hintText: hintText,
         hintStyle: TextStyle(
           color: Colors.grey,
           fontSize: 16,
@@ -31,6 +44,14 @@ class CustomTextfield extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(25),
           borderSide: const BorderSide(color: Colors.teal, width: 4),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(25),
+          borderSide: const BorderSide(color: Colors.red, width: 2),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(25),
+          borderSide: const BorderSide(color: Colors.blueGrey, width: 4),
         ),
       ),
     );

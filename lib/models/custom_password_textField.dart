@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class CustomPasswordTextfield extends StatefulWidget {
-   CustomPasswordTextfield({  this.onChanged, super.key});
+  CustomPasswordTextfield({this.onChanged, super.key});
   Function(String)? onChanged;
 
   @override
@@ -17,7 +17,13 @@ class _CustomPasswordTextfieldState extends State<CustomPasswordTextfield> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'Field is required';
+        }
+        return null;
+      },
       onChanged: widget.onChanged,
       keyboardType: TextInputType.visiblePassword,
       obscureText: obscureText,
@@ -53,6 +59,14 @@ class _CustomPasswordTextfieldState extends State<CustomPasswordTextfield> {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(25),
           borderSide: const BorderSide(color: Colors.teal, width: 4),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(25),
+          borderSide: const BorderSide(color: Colors.red, width: 2),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(25),
+          borderSide: const BorderSide(color: Colors.blueGrey, width: 4),
         ),
       ),
     );
