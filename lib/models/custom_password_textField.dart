@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class CustomPasswordTextfield extends StatefulWidget {
-  const CustomPasswordTextfield({super.key});
+   CustomPasswordTextfield({  this.onChanged, super.key});
+  Function(String)? onChanged;
 
   @override
   State<CustomPasswordTextfield> createState() =>
@@ -17,6 +18,7 @@ class _CustomPasswordTextfieldState extends State<CustomPasswordTextfield> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: widget.onChanged,
       keyboardType: TextInputType.visiblePassword,
       obscureText: obscureText,
       decoration: InputDecoration(
