@@ -1,4 +1,4 @@
-import 'package:chat_app/screens/sign_up_screen.dart';
+// ignore: file_names
 import 'package:flutter/material.dart';
 
 class CustomCheckacountRow extends StatelessWidget {
@@ -6,9 +6,11 @@ class CustomCheckacountRow extends StatelessWidget {
     super.key,
     required this.question,
     required this.option,
+    required this.onpressed,
   });
   final String question;
   final String option;
+  final Function() onpressed;
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +19,7 @@ class CustomCheckacountRow extends StatelessWidget {
       children: [
         Text(question),
         TextButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SignUpScreen()),
-            );
-          },
+          onPressed: onpressed,
           child: Text(
             option,
             style: TextStyle(

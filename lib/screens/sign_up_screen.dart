@@ -10,7 +10,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 // ignore: must_be_immutable
 class SignUpScreen extends StatefulWidget {
-  SignUpScreen({super.key});
+  const SignUpScreen({super.key});
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -26,6 +26,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   String? number;
 
   bool isLoading = false;
+  bool isOnline = false;
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -95,6 +96,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 email: email == null ? "" : email!,
                                 password: password == null ? "" : password!,
                               );
+                          Navigator.pop(context);
                           ScaffoldMessenger.of(
                             // ignore: use_build_context_synchronously
                             context,
@@ -106,6 +108,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                             ),
                           );
+                          isOnline = true;
                         } on FirebaseAuthException catch (e) {
                           if (e.code == "email-already-in-use") {
                             // ignore: use_build_context_synchronously
@@ -117,6 +120,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ),
                               ),
                             );
+                            isOnline = true;
                           } else if (e.code == "invalid-email") {
                             // ignore: use_build_context_synchronously
                             ScaffoldMessenger.of(context).showSnackBar(
@@ -127,6 +131,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ),
                               ),
                             );
+                            isOnline = true;
                           } else if (e.code == "weak-password") {
                             // ignore: use_build_context_synchronously
                             ScaffoldMessenger.of(context).showSnackBar(
@@ -137,6 +142,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ),
                               ),
                             );
+                            isOnline = true;
                           } else if (e.code == "channel-error") {
                             // ignore: use_build_context_synchronously
                             ScaffoldMessenger.of(context).showSnackBar(
@@ -150,15 +156,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           }
                         }
                         isLoading = false;
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            backgroundColor: const Color(0xFFCDE7E0),
-                            content: CustomSnackBarModel(
-                              message: "Check your internet connection",
+                        if (!isOnline) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              backgroundColor: const Color(0xFFCDE7E0),
+                              content: CustomSnackBarModel(
+                                message: "Check your internet connection",
+                              ),
                             ),
-                          ),
-                        );
-
+                          );
+                        }
                         setState(() {});
                       }
                     },
@@ -167,6 +174,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   CustomCheckacountRow(
                     question: "Already have an account?",
                     option: "Sign In now",
+                    onpressed: () {
+                      Navigator.pop(context);
+                    },
                   ),
                 ],
               ),

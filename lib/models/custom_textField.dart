@@ -24,11 +24,12 @@ class CustomTextfield extends StatelessWidget {
         }
         return null;
       },
+
       onChanged: onChanged,
       keyboardType: keyboardType,
+      textInputAction: TextInputAction.next,
       decoration: InputDecoration(
         prefixIcon: Icon(icon, color: Colors.grey),
-
         hintText: hintText,
         hintStyle: TextStyle(
           color: Colors.grey,

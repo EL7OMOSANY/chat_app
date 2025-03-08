@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -25,6 +26,7 @@ class _CustomPasswordTextfieldState extends State<CustomPasswordTextfield> {
         return null;
       },
       onChanged: widget.onChanged,
+      textInputAction: TextInputAction.next,
       keyboardType: TextInputType.visiblePassword,
       obscureText: obscureText,
       decoration: InputDecoration(
