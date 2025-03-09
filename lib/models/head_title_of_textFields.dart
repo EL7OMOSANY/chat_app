@@ -6,14 +6,14 @@ class HeadTitleOfTextfields extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Text(
-                title,
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.teal[700],
-                  fontFamily: "Pacifico",
-                ),
-              );
+    return Text(
+      title,
+      style: TextStyle(
+        fontSize: 22,
+        fontWeight: FontWeight.bold,
+        color: Colors.teal[700],
+        fontFamily: "Pacifico",
+      ),
+    );
   }
 }

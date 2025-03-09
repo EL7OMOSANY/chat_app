@@ -91,17 +91,17 @@ class _SignInScreenState extends State<SignInScreen> {
                               builder: (context) => const ChatScreen(),
                             ),
                           );
-                          ScaffoldMessenger.of(
-                            // ignore: use_build_context_synchronously
-                            context,
-                          ).showSnackBar(
-                            SnackBar(
-                              backgroundColor: const Color(0xFFCDE7E0),
-                              content: CustomSnackBarModel(
-                                message: "Success signing in",
-                              ),
-                            ),
-                          );
+                          // ScaffoldMessenger.of(
+                          //   // ignore: use_build_context_synchronously
+                          //   context,
+                          // ).showSnackBar(
+                          //   SnackBar(
+                          //     backgroundColor: const Color(0xFFCDE7E0),
+                          //     content: CustomSnackBarModel(
+                          //       message: "Success signing in",
+                          //     ),
+                          //   ),
+                          // );
                           isOnline = true;
                         } on FirebaseAuthException catch (e) {
                           if (e.code == "wrong-password") {
